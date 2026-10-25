@@ -1,0 +1,37 @@
+name: Build Minecraft Plugin
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Odblokuj repozytorium
+      uses: actions/checkout@v4
+
+    - name: Konfiguracja środowiska Java 21 (Temurin)
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Nadaj uprawnienia wykonawcze dla Gradle
+      run: chmod +x gradlew
+      continue-on-error: true
+
+    - name: Budowanie projektu przez Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        arguments: build
+
+    - name: Zapisz skompilowany plik JAR jako artefakt
+      uses: actions/upload-artifact@v4
+      with:
+        name: CustomItems-1.0-SNAPSHOT
+        path: build/libs/*.jar
