@@ -1,0 +1,13 @@
+name: CustomItems
+version: 1.0
+main: com.example.customitems.CustomItemsPlugin
+api-version: '1.21'
+commands:
+  customitem:
+    description: Wydaje customowy przedmiot
+    permission: customitems.admin
+    usage: /customitem <sword|crown|hammer>
+permissions:
+  customitems.admin:
+    description: Dostęp do komendy customowych przedmiotów
+    default: op
