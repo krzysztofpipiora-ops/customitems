@@ -24,7 +24,7 @@ jobs:
     - name: Budowanie projektu przez Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
-        gradle-version: '8.8' # Wskazujemy wersję Gradle, ponieważ brak pliku gradlew
+        gradle-version: '8.8'
         arguments: build
 
     - name: Zapisz skompilowany plik JAR jako artefakt
